@@ -4,9 +4,9 @@ from time import sleep
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import ElementClickInterceptedException
 
-USERNAME = input('Digite seu nome de usuário: ')
-PASSWORD = input('Digite sua senha: ')
-SIMILAR_ACCOUNT = input('Digite a conta que voce quer obter os seguidores: ')
+USERNAME = input('Write your username: ')
+PASSWORD = input('Write your password: ')
+SIMILAR_ACCOUNT = input('Set account with you want scrape followers: ')
 
 
 class InstaFollower:
