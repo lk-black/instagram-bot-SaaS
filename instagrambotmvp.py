@@ -4,10 +4,6 @@ from time import sleep
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import ElementClickInterceptedException
 
-USERNAME = input('Write your username: ')
-PASSWORD = input('Write your password: ')
-SIMILAR_ACCOUNT = input('Set account with you want scrape followers: ')
-
 
 class InstaFollower:
     def __init__(self):
@@ -19,12 +15,12 @@ class InstaFollower:
         sleep(5)
         
         
-    def login(self):
-        self.username = self.driver.find_element(by=By.NAME, value="username")
-        self.username.send_keys(USERNAME)
+    def login(self, username, password):
+        self.username_field = self.driver.find_element(by=By.NAME, value="username")
+        self.username_field.send_keys(username)
         sleep(2)
-        self.password = self.driver.find_element(by=By.NAME, value="password")
-        self.password.send_keys(PASSWORD, Keys.ENTER)
+        self.password_field = self.driver.find_element(by=By.NAME, value="password")
+        self.password_field.send_keys(password, Keys.ENTER)
         sleep(5)
 
         
@@ -57,8 +53,8 @@ class InstaFollower:
                 continue
         
 
-if __name__ == '__main__':
-    instagramBot = InstaFollower()
-    instagramBot.login()
-    instagramBot.findFollowers()
-    instagramBot.followAll()
+# if __name__ == '__main__':
+#     instagramBot = InstaFollower()
+#     instagramBot.login()
+#     # instagramBot.findFollowers()
+#     # instagramBot.followAll()
