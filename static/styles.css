@@ -1,0 +1,24 @@
+/* #features {
+    background-image: linear-gradient(to right bottom, #f9ce34, #ffaf31, #ff903d, #ff704d, #ff5160, #f9396e, #ef1f7e, #e0008f, #cf00a0, #b800b3, #960ec5, #6228d7);
+} */
+
+#features {
+    background-color: #31363F;
+}
+.feature col h2{
+    color: white;
+}
+
+.feature col p {
+    color: white;
+}
+
+#main_hero {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: auto;
+    overflow:hidden;
+    max-height:900px;
+ }

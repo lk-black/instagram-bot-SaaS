@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from time import sleep
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import ElementClickInterceptedException
+from datetime import datetime
 
 
 class InstaFollower:
@@ -22,35 +23,42 @@ class InstaFollower:
         self.password_field = self.driver.find_element(by=By.NAME, value="password")
         self.password_field.send_keys(password, Keys.ENTER)
         sleep(5)
-
         
-    def findFollowers(self):
-        url_perfil = 'https://www.instagram.com/' + SIMILAR_ACCOUNT
-        url_followers = 'https://www.instagram.com/' + SIMILAR_ACCOUNT + '/followers'
-        self.driver.get(url_perfil)
+        
+    def findFollowers(self, target_account_url, number_following_per_hour, time_for_each_follow):
+        self.number_following_per_hour = int(number_following_per_hour)
+        self.time_for_each_follow = int(time_for_each_follow)
+        self.target_account_url = target_account_url
+        target_account_followers_url = self.target_account_url + 'followers'
+        
+        self.driver.get(self.target_account_url)
         sleep(3)
-        self.driver.get(url_followers)
+        self.driver.get(target_account_followers_url)
         sleep(5.2)
+        
         modal_xpath = "//div[@class='_aano']"
         modal = self.driver.find_element(By.XPATH, value=modal_xpath)
-        for i in range(10):
+        for i in range(8):
             self.driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight", modal)
-            sleep(2)
+            sleep(1)
         self.button_list = self.driver.find_elements(By.XPATH, value="//button[contains(@class, '_acan') and contains(@class, '_acap') and contains(@class, '_acas') and contains(@class, '_aj1') and contains(@class, '_ap30')]")
-        
+
         
     def followAll(self):
+        count = self.number_following_per_hour
+        interval = self.time_for_each_follow / 2
+        
         for element in self.button_list:
-            cont = 0
             try:
-                sleep(5)
+                sleep(interval)
                 element.click()
-                cont =+ 1
-                print(f'{cont} Pessoa seguida!')
-                sleep(2)
+                count =- 1
+                sleep(interval)
             except ElementClickInterceptedException:
                 print('Deu ruim')
                 continue
+            if count == 0:
+                break
         
 
 # if __name__ == '__main__':
