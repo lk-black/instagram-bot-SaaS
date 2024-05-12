@@ -13,7 +13,7 @@ class InstaFollower:
         self.driver = webdriver.Chrome(options=chrome_options)
         self.driver.get('https://www.instagram.com')
         
-        sleep(5)
+        sleep(3)
         
         
     def login(self, username, password):
@@ -22,7 +22,7 @@ class InstaFollower:
         sleep(2)
         self.password_field = self.driver.find_element(by=By.NAME, value="password")
         self.password_field.send_keys(password, Keys.ENTER)
-        sleep(5)
+        sleep(3)
         
         
     def findFollowers(self, target_account_url, number_following_per_hour, time_for_each_follow):
@@ -32,13 +32,13 @@ class InstaFollower:
         target_account_followers_url = self.target_account_url + 'followers'
         
         self.driver.get(self.target_account_url)
-        sleep(3)
+        sleep(2)
         self.driver.get(target_account_followers_url)
-        sleep(5.2)
+        sleep(4)
         
         modal_xpath = "//div[@class='_aano']"
         modal = self.driver.find_element(By.XPATH, value=modal_xpath)
-        for i in range(8):
+        for i in range(5):
             self.driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight", modal)
             sleep(1)
         self.button_list = self.driver.find_elements(By.XPATH, value="//button[contains(@class, '_acan') and contains(@class, '_acap') and contains(@class, '_acas') and contains(@class, '_aj1') and contains(@class, '_ap30')]")

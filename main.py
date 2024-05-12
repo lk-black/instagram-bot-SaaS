@@ -13,6 +13,8 @@ app.config['SECRET_KEY'] = SECRET_KEY
 
 @app.route('/')
 def home():
+    global instagramBot
+    instagramBot = InstaFollower() 
     return render_template('index.html')
 
 
@@ -26,8 +28,6 @@ def login():
 @app.route('/login_instagram', methods=['GET', 'POST'])
 def login_instagram():
     form = LoginForm()
-    global instagramBot
-    instagramBot = InstaFollower()
     if request.method == 'POST':
         username = form.username.data
         password = form.password.data
